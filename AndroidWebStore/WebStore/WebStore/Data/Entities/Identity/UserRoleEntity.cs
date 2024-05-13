@@ -7,4 +7,5 @@ namespace WebStore.Data.Entities.Identity
         public virtual UserEntity User { get; set; }
         public virtual RoleEntity Role { get; set; }
     }
+
 }

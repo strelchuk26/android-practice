@@ -10,8 +10,8 @@ namespace WebStore.Data
         IdentityUserClaim<long>, UserRoleEntity, IdentityUserLogin<long>,
         IdentityRoleClaim<long>, IdentityUserToken<long>>
     {
-        public MyAppContext(DbContextOptions<MyAppContext> options) 
-            :base(options) { }
+        public MyAppContext(DbContextOptions<MyAppContext> options)
+            : base(options) { }
 
         public DbSet<CategoryEntity> Categories { get; set; }
 

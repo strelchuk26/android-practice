@@ -116,7 +116,6 @@ namespace WebStore.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
-                        .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -124,7 +123,12 @@ namespace WebStore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("TEXT");
 
+                    b.Property<long?>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("tblCategories");
                 });
@@ -284,6 +288,15 @@ namespace WebStore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebStore.Data.Entities.CategoryEntity", b =>
+                {
+                    b.HasOne("WebStore.Data.Entities.Identity.UserEntity", "User")
+                        .WithMany("Categories")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebStore.Data.Entities.Identity.UserRoleEntity", b =>
                 {
                     b.HasOne("WebStore.Data.Entities.Identity.RoleEntity", "Role")
@@ -310,6 +323,8 @@ namespace WebStore.Migrations
 
             modelBuilder.Entity("WebStore.Data.Entities.Identity.UserEntity", b =>
                 {
+                    b.Navigation("Categories");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
